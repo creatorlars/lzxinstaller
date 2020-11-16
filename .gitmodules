@@ -1,0 +1,3 @@
+[submodule "lzxlib"]
+	path = lzxlib
+	url = https://github.com/lzxindustries/lzxlib
