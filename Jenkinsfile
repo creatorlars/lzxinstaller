@@ -25,13 +25,13 @@ pipeline {
                 sh 'rm -rf build && mkdir build && cd build && cmake .. && cmake --build . && cpack .'
             }
         }
-        stage('Export Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'build'
+        //stage('Export Artifacts') {
+            //steps {
+            //  archiveArtifacts artifacts: 'build'
                 //archiveArtifacts artifacts: '${WORKSPACE}/build/*.exe'
                 //archiveArtifacts artifacts: '${WORKSPACE}/build/*.dmg'
                 //archiveArtifacts artifacts: '${WORKSPACE}/build/*.run'
-            }
-        }
+            //}
+        //}
     }
 }
