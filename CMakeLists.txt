@@ -69,7 +69,6 @@ if(WIN32)
     cpack_add_component_group(lzxtools DISPLAY_NAME "LZX Tools" DESCRIPTION "Software tools for LZX Industries devices.")
     cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/lzxtools)
 endif()
-add_subdirectory(src)
 
 # BUILD FLOW - LINUX HOST
 # Build All Core RTL Hardware Definition & Bitstream
