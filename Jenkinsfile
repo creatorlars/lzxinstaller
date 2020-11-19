@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Export Artifacts') {
             steps {
-                archiveArtifacts artifacts: 'build/repo'
+                archiveArtifacts artifacts: 'build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository'
                 archiveArtifacts artifacts: 'build/*.exe'
                 archiveArtifacts artifacts: 'build/*.dmg'
                 archiveArtifacts artifacts: 'build/*.run'
