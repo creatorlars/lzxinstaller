@@ -66,12 +66,12 @@ if(WIN32)
     include(CPack)
     include(CPackIFW)   
     cpack_add_component_group(lzxtools DISPLAY_NAME "LZX Tools" DESCRIPTION "Software tools for LZX Industries devices.")
-    cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/lzxtools)
+    cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/)
 endif()
 
-add_subdirectory(artifacts/lzxcore-tbc2-base)
-add_subdirectory(artifacts/lzxdfu)
-add_subdirectory(artifacts/lzxplnx)
+add_subdirectory(components/lzxcore-tbc2-base)
+add_subdirectory(components/lzxdfu)
+add_subdirectory(components/lzxplnx)
 
 # BUILD FLOW - LINUX HOST
 # Build All Core RTL Hardware Definition & Bitstream
