@@ -15,9 +15,9 @@ pipeline {
     stages {
         stage('Import Artifacts') {
             steps {
-                copyArtifacts(projectName: 'lzxplnx', target: 'artifacts/lzxplnx')        
-                copyArtifacts(projectName: 'lzxplnx', target: 'artifacts/lzxcore-tbc2-base')   
-                copyArtifacts(projectName: 'lzxplnx', target: 'artifacts/lzxdfu')   
+                //copyArtifacts(projectName: 'lzxplnx', target: 'artifacts/lzxplnx')        
+                //copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'artifacts/lzxcore-tbc2-base')   
+                //copyArtifacts(projectName: 'lzxdfu', target: 'artifacts/lzxdfu')   
             }
         }
         stage('Build') {
