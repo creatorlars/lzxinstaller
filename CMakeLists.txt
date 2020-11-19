@@ -70,6 +70,10 @@ if(WIN32)
     cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/lzxtools)
 endif()
 
+add_subdirectory(artifacts/lzxcore-tbc2-base)
+add_subdirectory(artifacts/lzxdfu)
+add_subdirectory(artifacts/lzxplnx)
+
 # BUILD FLOW - LINUX HOST
 # Build All Core RTL Hardware Definition & Bitstream
 # Create & Configure PetaLinux Project
