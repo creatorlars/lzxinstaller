@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Export Artifacts') {
             steps {
-                archiveArtifacts artifacts: '${WORKSPACE}/build'
+                archiveArtifacts artifacts: 'build'
                 //archiveArtifacts artifacts: '${WORKSPACE}/build/*.exe'
                 //archiveArtifacts artifacts: '${WORKSPACE}/build/*.dmg'
                 //archiveArtifacts artifacts: '${WORKSPACE}/build/*.run'
