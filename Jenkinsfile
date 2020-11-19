@@ -27,10 +27,10 @@ pipeline {
         }
         stage('Export Artifacts') {
             steps {
-                archiveArtifacts artifacts: 'build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository'
-                archiveArtifacts artifacts: 'build/*.exe'
-                archiveArtifacts artifacts: 'build/*.dmg'
-                archiveArtifacts artifacts: 'build/*.run'
+                archiveArtifacts artifacts: '${WORKSPACE}/build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository'
+                archiveArtifacts artifacts: '${WORKSPACE}/build/*.exe'
+                archiveArtifacts artifacts: '${WORKSPACE}/build/*.dmg'
+                archiveArtifacts artifacts: '${WORKSPACE}/build/*.run'
             }
         }
     }
