@@ -15,8 +15,7 @@ else()
     
 endif()
 
-include(GitVersion)
-project(lzxtools VERSION ${PROJECT_VERSION})
+project(lzxtools VERSION 0.1.0)
 if(WIN32)
     find_package(Qt5 COMPONENTS Widgets SerialPort REQUIRED)
     if(Qt5_FOUND AND WIN32 AND TARGET Qt5::qmake AND NOT TARGET Qt5::windeployqt)
