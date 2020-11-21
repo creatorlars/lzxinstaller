@@ -66,7 +66,7 @@ if(WIN32)
     include(CPack)
     include(CPackIFW)   
     cpack_add_component_group(lzxtools DISPLAY_NAME "LZX Tools" DESCRIPTION "Software tools for LZX Industries devices.")
-    cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/)
+    cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/installer/repository)
 endif()
 
 add_subdirectory(components/lzxcore-tbc2-base)
