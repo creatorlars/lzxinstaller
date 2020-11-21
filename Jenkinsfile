@@ -13,13 +13,11 @@ pipeline {
     }
 
     stages {
-        //stage('Import Artifacts') {
-        //    steps {
-                //copyArtifacts(projectName: 'lzxplnx', target: 'artifacts/lzxplnx')        
-        //        copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'components/lzxcore-tbc2-base')   
-                //copyArtifacts(projectName: 'lzxdfu', target: 'artifacts/lzxdfu')   
-        //    }
-        //}
+        stage('Import Artifacts') {
+            steps {
+                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'components/lzxcore-tbc2-base')   
+            }
+        }
         stage('Build') {
             steps {
                 sh 'rm -rf build && mkdir build && cd build && cmake .. && cmake --build . && cpack .'

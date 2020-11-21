@@ -70,8 +70,8 @@ if(WIN32)
 endif()
 
 add_subdirectory(components/lzxcore-tbc2-base)
-add_subdirectory(components/lzxdfu)
-add_subdirectory(components/lzxplnx)
+# add_subdirectory(components/lzxdfu)
+# add_subdirectory(components/lzxplnx)
 
 # BUILD FLOW - LINUX HOST
 # Build All Core RTL Hardware Definition & Bitstream
