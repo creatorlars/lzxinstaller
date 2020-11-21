@@ -17,6 +17,7 @@ pipeline {
             steps {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'components')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'components')   
+                copyArtifacts(projectName: 'lzxdfu', target: 'components')   
             }
         }
         stage('Build') {
