@@ -25,8 +25,10 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository'
-                archiveArtifacts artifacts: 'build/lzx-tools-installer.exe'
+                sh 'mkdir downloads && cp -R ${WORKSPACE}/build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository ${WORKSPACE}/downloads'
+                sh 'mkdir installer && cp -R ${WORKSPACE}/build/lzx-tools-installer.exe ${WORKSPACE}/installer'
+                archiveArtifacts artifacts: 'downloads'
+                archiveArtifacts artifacts: 'installer'
             }
         }
     }
