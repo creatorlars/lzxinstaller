@@ -28,9 +28,8 @@ pipeline {
             steps {
                 sh 'rm -rf installer && mkdir installer && mv build/lzx-tools-installer.exe installer/lzx-tools-installer.exe'
                 sh 'mv build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository installer/repository'
-                archiveArtifacts artifacts: 'installer/repository/lzxtools/*'
-                archiveArtifacts artifacts: 'installer/repository/*'
-                archiveArtifacts artifacts: 'installer/lzx-tools-installer.exe'
+                archiveArtifacts artifacts: 'installer/*'
+                //archiveArtifacts artifacts: 'installer/lzx-tools-installer.exe'
             }
         }
     }

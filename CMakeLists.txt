@@ -12,7 +12,8 @@ else()
     set(XILINX_VIVADO_TOOLCHAIN_FILE /opt/Xilinx/Vivado/2018.2/settings64.sh)
     set(XILINX_SDK_TOOLCHAIN_FILE /opt/Xilinx/SDK/2018.2/settings64.sh)
     set(XILINX_PETALINUX_TOOLCHAIN_FILE /opt/pkg/petalinux/settings.sh)
-    
+    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} C:/usr/local/Qt-5.14.2/lib/cmake/Qt5)
+    set(CPACK_IFW_ROOT C:/Qt/Tools/QtInstallerFramework/4.0/bin)    
 endif()
 
 project(lzxtools VERSION 0.1.0)
@@ -70,27 +71,5 @@ if(WIN32)
 endif()
 
 add_subdirectory(components/lzxcore-tbc2-base)
-# add_subdirectory(components/lzxdfu)
+add_subdirectory(components/lzxdfu)
 add_subdirectory(components/lzxplnx)
-
-# BUILD FLOW - LINUX HOST
-# Build All Core RTL Hardware Definition & Bitstream
-# Create & Configure PetaLinux Project
-# Build PetaLinux
-# Export Petalinux BSP
-# Build PetaLinux & FreeRTOS Applications
-# Package Firmware Update Packages
-# Build Desktop Applications for Linux
-# Package Desktop Installer for Linux
-
-# BUILD FLOW - WINDOWS HOST
-# Cross Compile PetaLinux Applications for Windows
-# Build Desktop Applications for Windows
-# Package Desktop Installer for Windows
-
-# BUILD FLOW - MAC HOST
-# Build Desktop Applications for Mac
-# Package Desktop Installer for Mac
-
-# BUILD FLOW - DEPLOYMENT (LINUX HOST)
-# Upload Packages To Deployment Repos
