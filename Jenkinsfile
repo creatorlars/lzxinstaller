@@ -24,8 +24,8 @@ pipeline {
                 copyArtifacts(projectName: 'lzxdfu', target: 'components')   
                 sh 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
                 sh 'mkdir installer'
-                sh 'mv build/lzxtools-${PROJECT_VERSION}-Linux.run installer/lzxtools-${PROJECT_VERSION}-Linux.run'
-                sh 'mv build/_CPack_Packages/Linux/IFW/lzxtools-${PROJECT_VERSION}-Linux/repository installer/repository'
+                sh 'mv build/lzxtools-0.1.0-Linux.run installer/lzxtools-0.1.0-Linux.run'
+                sh 'mv build/_CPack_Packages/Linux/IFW/*/repository installer/repository'
                 archiveArtifacts artifacts: 'installer/**'
             }
         }
@@ -39,8 +39,8 @@ pipeline {
                 copyArtifacts(projectName: 'lzxdfu', target: 'components')   
                 bat 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
                 bat 'mkdir installer'
-                bat 'move build\\lzxtools-${PROJECT_VERSION}-win64.exe installer'
-                bat 'move build\\_CPack_Packages\\win64\\IFW\\lzxtools-${PROJECT_VERSION}-win64\\repository installer'
+                bat 'move build\\lzxtools-0.1.0-win64.exe installer'
+                bat 'move build\\_CPack_Packages\\win64\\IFW\\lzxtools-0.1.0-win64\\repository installer'
                 archiveArtifacts artifacts: 'installer/**'
             }
         }
