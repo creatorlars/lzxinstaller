@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                bat 'mkdir installer && move build/lzx-tools-installer.exe installer/lzx-tools-installer.exe'
+                bat 'mkdir installer && move build/lzx-tools-installer.exe installer'
                 bat 'move build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository installer'
                 archiveArtifacts artifacts: 'installer/*'
                 //archiveArtifacts artifacts: 'installer/lzx-tools-installer.exe'
