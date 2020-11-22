@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-install(FILES *.bit *.elf DESTINATION lzxcore-tbc2-base COMPONENT lzxcore-tbc2-base)
+install(FILES lzxcore-tbc2-base.bit lzxcore-tbc2-base.elf DESTINATION lzxcore-tbc2-base COMPONENT lzxcore-tbc2-base)
 
 set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} lzxcore-tbc2-base)
 
