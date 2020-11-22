@@ -40,6 +40,7 @@ set(CPACK_GENERATOR IFW)
      set(CPACK_PACKAGE_VERSION 1.0.0) # Version of installer
      set(CPACK_PACKAGE_VENDOR "LZX Industries")
     set(CPACK_IFW_VERBOSE ON)
+    set(CPACK_IFW_PACKAGE_TITLE "LZX Wizard")
     set(CPACK_IFW_PRODUCT_URL "https://www.lzxindustries.net")
     set(CPACK_IFW_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/lzx)
     set(CPACK_IFW_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/window.png)
