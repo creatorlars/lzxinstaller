@@ -63,12 +63,10 @@ else()
 cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/Linux/repository)
 endif()
 
-# cpack_ifw_configure_component(lzxtbc2 
-#                     NAME "TBC2 Firmware"
-#                     DISPLAY_NAME "TBC2 Firmware" # Note: Internationalization supported
-#                     DESCRIPTION "TBC2 Firmware" # Note: Internationalization supported
-#                     VERSION "1.0.0"
-#                     CHECKABLE true)
+cpack_ifw_configure_component(lzxtbc2 
+                     DISPLAY_NAME "TBC2 Firmware" # Note: Internationalization supported
+                     DESCRIPTION "TBC2 Firmware" # Note: Internationalization supported
+                     VERSION "1.0.0")
 
 
 # cpack_ifw_configure_component(lzxdfu 
