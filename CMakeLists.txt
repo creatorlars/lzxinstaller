@@ -21,8 +21,9 @@ endif()
 
 project(lzx VERSION 1.0.0)
 
-add_subdirectory(components/lzxplnx)
-add_subdirectory(components/lzxcore-tbc2-base)
+add_subdirectory(firmware/lzxplnx)
+add_subdirectory(firmware/lzxcore-tbc2-base)
+add_subdirectory(apps/lzxdfu)
 
 set(CPACK_COMPONENT_GROUP_FIRMWARE_DESCRIPTION "Firmware update packages for LZX Industries devices.")
 set(CPACK_GENERATOR IFW)
