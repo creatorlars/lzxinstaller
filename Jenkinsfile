@@ -26,7 +26,7 @@ pipeline {
                 sh 'mkdir installer'
                 sh 'mv build/lzx-tools-installer.run installer/lzx-tools-installer.run'
                 sh 'mv build/_CPack_Packages/Linux/IFW/lzx-tools-installer/repository installer/repository'
-                archiveArtifacts artifacts: 'installer/*'
+                archiveArtifacts artifacts: 'installer/**'
             }
         }
         stage('Build Windows') {
@@ -41,7 +41,7 @@ pipeline {
                 bat 'mkdir installer'
                 bat 'move build\\lzx-tools-installer.exe installer'
                 bat 'move build\\_CPack_Packages\\win64\\IFW\\lzx-tools-installer\\repository installer'
-                archiveArtifacts artifacts: 'installer/*'
+                archiveArtifacts artifacts: 'installer/**'
             }
         }
     }
