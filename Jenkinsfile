@@ -1,9 +1,10 @@
 pipeline {
-    agent {
-        node {
-            label 'lzx-windows'
-        }
-    }
+    agent none
+    // agent {
+    //     node {
+    //         label 'lzx-windows'
+    //     }
+    // }
     
     environment {
         PROJECT_NAME = 'lzxinstaller'
@@ -13,25 +14,34 @@ pipeline {
     }
 
     stages {
-        stage('Import Artifacts') {
+        stage('Build Linux') {
+            agent {
+                label 'master'
+            }
             steps {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'components')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'components')   
                 copyArtifacts(projectName: 'lzxdfu', target: 'components')   
+                sh 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
+                sh 'mkdir installer'
+                sh 'mv build/lzx-tools-installer.run installer/lzx-tools-installer.run'
+                sh 'mv build/_CPack_Packages/Linux/IFW/lzx-tools-installer/repository installer/repository'
+                archiveArtifacts artifacts: 'installer/*'
             }
         }
-        stage('Build') {
+        stage('Build Windows') {
+            agent {
+                label 'lzx-windows'
+            }
             steps {
+                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'components')   
+                copyArtifacts(projectName: 'lzxplnx', target: 'components')   
+                copyArtifacts(projectName: 'lzxdfu', target: 'components')   
                 bat 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
-            }
-        }
-        stage('Archive') {
-            steps {
                 bat 'mkdir installer'
                 bat 'move build\\lzx-tools-installer.exe installer'
                 bat 'move build\\_CPack_Packages\\win64\\IFW\\lzx-tools-installer\\repository installer'
                 archiveArtifacts artifacts: 'installer/*'
-                //archiveArtifacts artifacts: 'installer/lzx-tools-installer.exe'
             }
         }
     }
