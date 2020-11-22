@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label 'lars-thinkpad'
+            label 'lzx-windows'
         }
     }
     
@@ -22,13 +22,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'rm -rf build && mkdir build && cd build && cmake .. && cmake --build . && cpack .'
+                bat 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
             }
         }
         stage('Archive') {
             steps {
-                sh 'rm -rf installer && mkdir installer && mv build/lzx-tools-installer.exe installer/lzx-tools-installer.exe'
-                sh 'mv build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository installer/repository'
+                bat 'mkdir installer && mv build/lzx-tools-installer.exe installer/lzx-tools-installer.exe'
+                bat 'move build/_CPack_Packages/win64/IFW/lzx-tools-installer/repository installer'
                 archiveArtifacts artifacts: 'installer/*'
                 //archiveArtifacts artifacts: 'installer/lzx-tools-installer.exe'
             }
