@@ -97,10 +97,11 @@ set(CPACK_GENERATOR IFW)
 #     include(CPackIFW)   
 #     cpack_add_component_group(lzxtools DISPLAY_NAME "LZX Tools" DESCRIPTION "Software tools for LZX Industries devices.")
 
-cpack_ifw_add_repository(lzxinstaller URL http://downloads.lzxindustries.net/installer/repository)
-
 include(CPack)
 include(CPackIFW)  
+
+cpack_ifw_add_repository(lzxinstaller URL http://downloads.lzxindustries.net/installer/${CMAKE_SYSTEM}/repository)
+
 
 # add_subdirectory(components/lzxplnx)
 # add_subdirectory(components/lzxcore-tbc2-base)
