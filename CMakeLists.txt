@@ -28,12 +28,6 @@ add_subdirectory(apps/lzxdfu)
 
 set(CPACK_COMPONENTS_ALL lzxtbc2 lzxdfu)
 
-set(CPACK_COMPONENT_lzxtbc2_DISPLAY_NAME "LZX TBC2 Base")
-set(CPACK_COMPONENT_lzxtbc2_DESCRIPTION "Base firmware for TBC2.")
-set(CPACK_COMPONENT_lzxtbc2_DEPENDS lzxplnx)
-set(CPACK_COMPONENT_lzxtbc2_GROUP "Firmware")
-
-
 set(CPACK_GENERATOR IFW)
 
      set(CPACK_PACKAGE_NAME "LZX")
@@ -69,3 +63,55 @@ else()
 cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/Linux/repository)
 endif()
 
+cpack_ifw_configure_component(lzxtbc2 
+                    NAME "TBC2 Firmware"
+                    DISPLAY_NAME "TBC2 Firmware" # Note: Internationalization supported
+                    DESCRIPTION "TBC2 Firmware" # Note: Internationalization supported
+                    VERSION "1.0.0"
+                    CHECKABLE true)
+
+
+cpack_ifw_configure_component(lzxdfu 
+                    NAME "Firmware Update Utility"
+                    DISPLAY_NAME "Firmware Update Utility" # Note: Internationalization supported
+                    DESCRIPTION "Firmware Update Utility" # Note: Internationalization supported
+                    VERSION "1.0.0"
+                    CHECKABLE true)                    
+
+# cpack_ifw_configure_component(<compname> [COMMON] [ESSENTIAL] [VIRTUAL]
+#                     [FORCED_INSTALLATION] [REQUIRES_ADMIN_RIGHTS]
+#                     [NAME <name>]
+#                     [DISPLAY_NAME <display_name>] # Note: Internationalization supported
+#                     [DESCRIPTION <description>] # Note: Internationalization supported
+#                     [UPDATE_TEXT <update_text>]
+#                     [VERSION <version>]
+#                     [RELEASE_DATE <release_date>]
+#                     [SCRIPT <script>]
+#                     [PRIORITY|SORTING_PRIORITY <sorting_priority>] # Note: PRIORITY is deprecated
+#                     [DEPENDS|DEPENDENCIES <com_id> ...]
+#                     [AUTO_DEPEND_ON <comp_id> ...]
+#                     [LICENSES <display_name> <file_path> ...]
+#                     [DEFAULT <value>]
+#                     [USER_INTERFACES <file_path> <file_path> ...]
+#                     [TRANSLATIONS <file_path> <file_path> ...]
+#                     [REPLACES <comp_id> ...]
+#                     [CHECKABLE <value>])
+
+# cpack_ifw_configure_component_group(<groupname> [VIRTUAL]
+#                     [FORCED_INSTALLATION] [REQUIRES_ADMIN_RIGHTS]
+#                     [NAME <name>]
+#                     [DISPLAY_NAME <display_name>] # Note: Internationalization supported
+#                     [DESCRIPTION <description>] # Note: Internationalization supported
+#                     [UPDATE_TEXT <update_text>]
+#                     [VERSION <version>]
+#                     [RELEASE_DATE <release_date>]
+#                     [SCRIPT <script>]
+#                     [PRIORITY|SORTING_PRIORITY <sorting_priority>] # Note: PRIORITY is deprecated
+#                     [DEPENDS|DEPENDENCIES <com_id> ...]
+#                     [AUTO_DEPEND_ON <comp_id> ...]
+#                     [LICENSES <display_name> <file_path> ...]
+#                     [DEFAULT <value>]
+#                     [USER_INTERFACES <file_path> <file_path> ...]
+#                     [TRANSLATIONS <file_path> <file_path> ...]
+#                     [REPLACES <comp_id> ...]
+#                     [CHECKABLE <value>])
