@@ -67,13 +67,13 @@ set(CPACK_GENERATOR IFW)
 #     endif()
 
     #  set(CPACK_PACKAGE_NAME "LZX Installer")
-     set(CPACK_PACKAGE_FILE_NAME lzxinstaller-${CMAKE_SYSTEM})
+     set(CPACK_PACKAGE_FILE_NAME lzxinstaller)
      set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.lzxindustries.net")
 #     #set(CPACK_RESOURCE_FILE_README ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/readme.txt)
 #     #set(CPACK_RESOURCE_FILE_WELCOME ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/welcome.txt)
 #     #set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/license.txt)
      set(CPACK_PACKAGE_INSTALL_DIRECTORY "LZX")
-#     set(CPACK_PACKAGE_VERSION ${LZX_VERSION}) # Version of installer
+     set(CPACK_PACKAGE_VERSION ${LZX_VERSION}) # Version of installer
 #     set(CPACK_PACKAGE_VENDOR "LZX Industries")
 #     set(CPACK_PACKAGE_EXECUTABLES lzxgui;LZX Gui;lzxterm;LZX Term;lzxpatch;LZX Patch)
 #     set(CPACK_CREATE_DESKTOP_LINKS lzxgui;LZX Gui;lzxterm;LZX Term;lzxpatch;LZX Patch) 
@@ -100,7 +100,7 @@ set(CPACK_GENERATOR IFW)
 include(CPack)
 include(CPackIFW)  
 
-cpack_ifw_add_repository(lzxinstaller URL http://downloads.lzxindustries.net/installer/${CMAKE_SYSTEM}/repository)
+cpack_ifw_add_repository(lzxinstaller URL http://downloads.lzxindustries.net/installer/repository)
 
 
 # add_subdirectory(components/lzxplnx)
