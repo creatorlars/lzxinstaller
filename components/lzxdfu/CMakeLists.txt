@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.3)
 
-cmake_minimum_required(VERSION 3.3)
 
 set(MY_COMPONENT_NAME lzxdfu)
 set(MY_COMPONENT_DESCRIPTION "LZX Firmware Update Utility")
