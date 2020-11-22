@@ -98,7 +98,8 @@ include(CPackIFW)
 #     include(CPack)
 #     include(CPackIFW)   
 #     cpack_add_component_group(lzxtools DISPLAY_NAME "LZX Tools" DESCRIPTION "Software tools for LZX Industries devices.")
-#     cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/installer/repository)
+
+cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/installer/repository)
 
 
 # add_subdirectory(components/lzxplnx)
