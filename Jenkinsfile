@@ -40,7 +40,7 @@ pipeline {
                 copyArtifacts(projectName: 'lzxdfu', target: 'components')   
                 bat 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
                 bat 'mkdir installer'
-                bat 'mkdir installer/win64'
+                bat 'mkdir installer\\win64'
                 bat 'move build\\lzx.exe installer\\win64'
                 bat 'move build\\_CPack_Packages\\win64\\IFW\\lzx\\repository installer/win64'
                 archiveArtifacts artifacts: 'installer/win64/**'
