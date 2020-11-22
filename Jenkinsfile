@@ -1,18 +1,5 @@
 pipeline {
     agent none
-    // agent {
-    //     node {
-    //         label 'lzx-windows'
-    //     }
-    // }
-    
-    environment {
-        PROJECT_NAME = 'lzxinstaller'
-        PROJECT_DESCRIPTION = 'LZX Tools Installer'
-        PROJECT_VERSION = '0.1.0'
-        PROJECT_AUTHOR = 'LZX Industries'
-    }
-
     stages {
         stage('Build Linux') {
             agent {
@@ -42,7 +29,7 @@ pipeline {
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
                 bat 'move build\\lzx.exe installer\\win64'
-                bat 'move build\\_CPack_Packages\\win64\\IFW\\lzx\\repository installer/win64'
+                bat 'move build\\_CPack_Packages\\win64\\IFW\\lzx\\repository installer\\win64'
                 archiveArtifacts artifacts: 'installer/win64/**'
             }
         }
