@@ -20,10 +20,13 @@ else()
     set(XILINX_VIVADO_TOOLCHAIN_FILE /opt/Xilinx/Vivado/2018.2/settings64.sh)
     set(XILINX_SDK_TOOLCHAIN_FILE /opt/Xilinx/SDK/2018.2/settings64.sh)
     set(XILINX_PETALINUX_TOOLCHAIN_FILE /opt/pkg/petalinux/settings.sh)
+    
+    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /usr/local/Qt-5.14.2/lib/cmake/Qt5)
+    set(CPACK_IFW_ROOT /usr/local/tools)
 endif()
 
 project(lzxtools VERSION 0.1.0)
-if(WIN32)
+
     find_package(Qt5 COMPONENTS Widgets SerialPort REQUIRED)
     if(Qt5_FOUND AND WIN32 AND TARGET Qt5::qmake AND NOT TARGET Qt5::windeployqt)
         get_target_property(_qt5_qmake_location Qt5::qmake IMPORTED_LOCATION)
@@ -74,7 +77,7 @@ if(WIN32)
     include(CPackIFW)   
     cpack_add_component_group(lzxtools DISPLAY_NAME "LZX Tools" DESCRIPTION "Software tools for LZX Industries devices.")
     cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/installer/repository)
-endif()
+
 
 add_subdirectory(components/lzxcore-tbc2-base)
 add_subdirectory(components/lzxdfu)
