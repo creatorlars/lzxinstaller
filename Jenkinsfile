@@ -6,9 +6,9 @@ pipeline {
                 label 'master'
             }
             steps {
-                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'components')   
-                copyArtifacts(projectName: 'lzxplnx', target: 'components')   
-                copyArtifacts(projectName: 'lzxdfu', target: 'components')   
+                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
+                copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
+                
                 sh 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
                 sh 'mkdir installer'
                 sh 'mkdir installer/Linux'
@@ -22,9 +22,9 @@ pipeline {
                 label 'lzx-windows'
             }
             steps {
-                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'components')   
-                copyArtifacts(projectName: 'lzxplnx', target: 'components')   
-                copyArtifacts(projectName: 'lzxdfu', target: 'components')   
+                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
+                copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
+                
                 bat 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
