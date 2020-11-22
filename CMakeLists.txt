@@ -63,57 +63,30 @@ else()
 cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/Linux/repository)
 endif()
 
+                    
+cpack_add_component_group(firmware
+                    DISPLAY_NAME "Firmware"
+                    DESCRIPTION "Firmware update packages for LZX Industries devices."
+                    EXPANDED)
+
+cpack_add_component_group(apps
+                    DISPLAY_NAME "Apps"
+                    DESCRIPTION "Cross-platform desktop applications."
+                    EXPANDED)                    
+
+cpack_add_component(lzxtbc2
+                    DISPLAY_NAME "TBC2"
+                    DESCRIPTION "Firmware for LZX Industries TBC2 module."
+                    GROUP firmware
+                    
+
+cpack_add_component(lzxdfu
+                    DISPLAY_NAME "Firmware Update Utility"
+                    DESCRIPTION "Firmware update utility app for LZX Industries devices."
+                    GROUP apps
+                    
 cpack_ifw_configure_component(lzxtbc2 
-                     DISPLAY_NAME "TBC2 Firmware" # Note: Internationalization supported
-                     DESCRIPTION "TBC2 Firmware" # Note: Internationalization supported
                      VERSION "1.0.0")
+
 cpack_ifw_configure_component(lzxdfu 
-                     DISPLAY_NAME "Firmware Update Utility" # Note: Internationalization supported
-                     DESCRIPTION "Firmware Update Utility" # Note: Internationalization supported
                      VERSION "1.0.0")
-
-
-# cpack_ifw_configure_component(lzxdfu 
-#                     NAME "Firmware Update Utility"
-#                     DISPLAY_NAME "Firmware Update Utility" # Note: Internationalization supported
-#                     DESCRIPTION "Firmware Update Utility" # Note: Internationalization supported
-#                     VERSION "1.0.0"
-#                     CHECKABLE true)                    
-
-# cpack_ifw_configure_component(<compname> [COMMON] [ESSENTIAL] [VIRTUAL]
-#                     [FORCED_INSTALLATION] [REQUIRES_ADMIN_RIGHTS]
-#                     [NAME <name>]
-#                     [DISPLAY_NAME <display_name>] # Note: Internationalization supported
-#                     [DESCRIPTION <description>] # Note: Internationalization supported
-#                     [UPDATE_TEXT <update_text>]
-#                     [VERSION <version>]
-#                     [RELEASE_DATE <release_date>]
-#                     [SCRIPT <script>]
-#                     [PRIORITY|SORTING_PRIORITY <sorting_priority>] # Note: PRIORITY is deprecated
-#                     [DEPENDS|DEPENDENCIES <com_id> ...]
-#                     [AUTO_DEPEND_ON <comp_id> ...]
-#                     [LICENSES <display_name> <file_path> ...]
-#                     [DEFAULT <value>]
-#                     [USER_INTERFACES <file_path> <file_path> ...]
-#                     [TRANSLATIONS <file_path> <file_path> ...]
-#                     [REPLACES <comp_id> ...]
-#                     [CHECKABLE <value>])
-
-# cpack_ifw_configure_component_group(<groupname> [VIRTUAL]
-#                     [FORCED_INSTALLATION] [REQUIRES_ADMIN_RIGHTS]
-#                     [NAME <name>]
-#                     [DISPLAY_NAME <display_name>] # Note: Internationalization supported
-#                     [DESCRIPTION <description>] # Note: Internationalization supported
-#                     [UPDATE_TEXT <update_text>]
-#                     [VERSION <version>]
-#                     [RELEASE_DATE <release_date>]
-#                     [SCRIPT <script>]
-#                     [PRIORITY|SORTING_PRIORITY <sorting_priority>] # Note: PRIORITY is deprecated
-#                     [DEPENDS|DEPENDENCIES <com_id> ...]
-#                     [AUTO_DEPEND_ON <comp_id> ...]
-#                     [LICENSES <display_name> <file_path> ...]
-#                     [DEFAULT <value>]
-#                     [USER_INTERFACES <file_path> <file_path> ...]
-#                     [TRANSLATIONS <file_path> <file_path> ...]
-#                     [REPLACES <comp_id> ...]
-#                     [CHECKABLE <value>])
