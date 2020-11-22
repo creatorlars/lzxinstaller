@@ -77,16 +77,18 @@ cpack_add_component_group(apps
 cpack_add_component(lzxtbc2
                     DISPLAY_NAME "TBC2"
                     DESCRIPTION "Firmware for LZX Industries TBC2 module."
-                    GROUP firmware
+                    GROUP firmware)
                     
 
 cpack_add_component(lzxdfu
                     DISPLAY_NAME "Firmware Update Utility"
                     DESCRIPTION "Firmware update utility app for LZX Industries devices."
-                    GROUP apps
+                    GROUP apps)
                     
 cpack_ifw_configure_component(lzxtbc2 
-                     VERSION "1.0.0")
+                     VERSION "1.0.0"
+                     CHECKABLE true)
 
 cpack_ifw_configure_component(lzxdfu 
-                     VERSION "1.0.0")
+                     VERSION "1.0.0"
+                     CHECKABLE true)
