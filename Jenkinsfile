@@ -25,7 +25,7 @@ pipeline {
                 sh 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
                 sh 'mkdir installer'
                 sh 'mv build/lzxtools-0.1.0-Linux.run installer/lzxtools-0.1.0-Linux.run'
-                sh 'mv build/_CPack_Packages/Linux/IFW/*/repository installer/repository'
+                sh 'mv build/_CPack_Packages/Linux/IFW/lzxtools-0.1.0-Linux/repository installer/repository'
                 archiveArtifacts artifacts: 'installer/**'
             }
         }

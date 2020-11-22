@@ -19,7 +19,7 @@ else()
     set(CPACK_IFW_ROOT /usr/local/tools)
 endif()
 
-project(lzxtools VERSION 0.1.0)
+project(lzxinstaller VERSION 1.0.0)
 
 install(FILES components/lzxcore-tbc2-base/lzxcore-tbc2-base.bit components/lzxcore-tbc2-base/lzxcore-tbc2-base.elf DESTINATION lzxcore-tbc2-base COMPONENT lzxcore-tbc2-base)
 install(FILES components/lzxplnx/BOOT.BIN components/lzxplnx/image.ub DESTINATION lzxplnx COMPONENT lzxplnx)
@@ -39,8 +39,7 @@ set(CPACK_COMPONENT_LZXCORE-TBC2-BASE_GROUP "Firmware")
 set(CPACK_COMPONENT_GROUP_FIRMWARE_DESCRIPTION "Firmware update packages for LZX Industries devices.")
 set(CPACK_GENERATOR IFW)
 
-include(CPack)
-include(CPackIFW)  
+
 
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/src/scripts/cmake)
 
@@ -67,23 +66,22 @@ include(CPackIFW)
 #         endif()
 #     endif()
 
-#     set(CPACK_PACKAGE_NAME "LZX Tools")
-#     set(CPACK_PACKAGE_FILE_NAME lzx-tools-installer)
-#     set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.lzxindustries.net")
+    #  set(CPACK_PACKAGE_NAME "LZX Installer")
+     set(CPACK_PACKAGE_FILE_NAME lzxinstaller-${CMAKE_SYSTEM})
+     set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.lzxindustries.net")
 #     #set(CPACK_RESOURCE_FILE_README ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/readme.txt)
 #     #set(CPACK_RESOURCE_FILE_WELCOME ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/welcome.txt)
 #     #set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/license.txt)
-#     set(CPACK_PACKAGE_INSTALL_DIRECTORY "LZX")
-#     set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "LZX Tools")
+     set(CPACK_PACKAGE_INSTALL_DIRECTORY "LZX")
 #     set(CPACK_PACKAGE_VERSION ${LZX_VERSION}) # Version of installer
 #     set(CPACK_PACKAGE_VENDOR "LZX Industries")
 #     set(CPACK_PACKAGE_EXECUTABLES lzxgui;LZX Gui;lzxterm;LZX Term;lzxpatch;LZX Patch)
 #     set(CPACK_CREATE_DESKTOP_LINKS lzxgui;LZX Gui;lzxterm;LZX Term;lzxpatch;LZX Patch) 
 
-#     set(CPACK_IFW_PACKAGE_GROUP lzxtools)
+#    set(CPACK_IFW_PACKAGE_GROUP lzxinstaller-${CMAKE_SYSTEM})
     set(CPACK_IFW_VERBOSE ON)
     set(CPACK_IFW_PRODUCT_URL "https://www.lzxindustries.net")
-    set(CPACK_IFW_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/lzx)
+    #set(CPACK_IFW_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/lzx)
     #set(CPACK_IFW_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/window.png)
     #set(CPACK_IFW_PACKAGE_LOGO ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/logo.png)
     #set(CPACK_IFW_PACKAGE_WATERMARK ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/watermark.png)
@@ -99,8 +97,10 @@ include(CPackIFW)
 #     include(CPackIFW)   
 #     cpack_add_component_group(lzxtools DISPLAY_NAME "LZX Tools" DESCRIPTION "Software tools for LZX Industries devices.")
 
-cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/installer/repository)
+cpack_ifw_add_repository(lzxinstaller URL http://downloads.lzxindustries.net/installer/repository)
 
+include(CPack)
+include(CPackIFW)  
 
 # add_subdirectory(components/lzxplnx)
 # add_subdirectory(components/lzxcore-tbc2-base)
