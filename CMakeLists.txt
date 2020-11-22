@@ -4,6 +4,14 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/src/scripts/cmake
 set(DEBUG 0)
 
 if(WIN32)
+    set(Qt5Core_DIR C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5Core)
+    set(Qt5_DIR C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5)
+else()
+    set(Qt5Core_DIR /usr/local/Qt-5.14.2/lib/cmake/Qt5Core)
+    set(Qt5_DIR /usr/local/Qt-5.14.2/lib/cmake/Qt5)
+endif()
+
+if(WIN32)
     set(XILINX_VIVADO_TOOLCHAIN_FILE C:/Xilinx/Vivado/2018.2/settings64.bat)
     set(XILINX_SDK_TOOLCHAIN_FILE C:/Xilinx/SDK/2018.2/settings64.bat)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5)
