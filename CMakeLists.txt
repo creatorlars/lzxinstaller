@@ -90,3 +90,6 @@ cpack_ifw_configure_component(lzxtbc2
 
 cpack_ifw_configure_component(lzxdfu 
                      VERSION "1.0.0")
+
+cpack_ifw_configure_component_group(firmware)
+cpack_ifw_configure_component_group(apps)
