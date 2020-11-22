@@ -86,9 +86,7 @@ cpack_add_component(lzxdfu
                     GROUP apps)
                     
 cpack_ifw_configure_component(lzxtbc2 
-                     VERSION "1.0.0"
-                     CHECKABLE true)
+                     VERSION "1.0.0")
 
 cpack_ifw_configure_component(lzxdfu 
-                     VERSION "1.0.0"
-                     CHECKABLE true)
+                     VERSION "1.0.0")
