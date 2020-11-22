@@ -66,24 +66,24 @@ endif()
                     
 cpack_add_component_group(firmware
                     DISPLAY_NAME "Firmware"
-                    DESCRIPTION "Firmware update packages for LZX Industries devices."
-                    EXPANDED)
+                    DESCRIPTION "Firmware update packages for LZX Industries devices.")
 
 cpack_add_component_group(apps
                     DISPLAY_NAME "Apps"
-                    DESCRIPTION "Cross-platform desktop applications."
-                    EXPANDED)                    
+                    DESCRIPTION "Cross-platform desktop applications.")                    
 
 cpack_add_component(lzxtbc2
                     DISPLAY_NAME "TBC2"
                     DESCRIPTION "Firmware for LZX Industries TBC2 module."
-                    GROUP firmware)
+                    GROUP firmware
+                    EXPANDED)
                     
 
 cpack_add_component(lzxdfu
                     DISPLAY_NAME "Firmware Update Utility"
                     DESCRIPTION "Firmware update utility app for LZX Industries devices."
-                    GROUP apps)
+                    GROUP apps
+                    EXPANDED)
                     
 cpack_ifw_configure_component(lzxtbc2 
                      VERSION "1.0.0")
