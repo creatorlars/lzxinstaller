@@ -25,7 +25,7 @@ pipeline {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
                 
-                bat 'mkdir build && cd build && cmake .. && cmake --build . && cpack .'
+                bat 'mkdir build && cd build && cmake .. && cmake --build . --config Release && cpack .'
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
                 bat 'move build\\lzx.exe installer\\win64'
