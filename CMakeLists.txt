@@ -63,20 +63,20 @@ else()
 cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/Linux/repository)
 endif()
 
-cpack_ifw_configure_component(lzxtbc2 
-                    NAME "TBC2 Firmware"
-                    DISPLAY_NAME "TBC2 Firmware" # Note: Internationalization supported
-                    DESCRIPTION "TBC2 Firmware" # Note: Internationalization supported
-                    VERSION "1.0.0"
-                    CHECKABLE true)
+# cpack_ifw_configure_component(lzxtbc2 
+#                     NAME "TBC2 Firmware"
+#                     DISPLAY_NAME "TBC2 Firmware" # Note: Internationalization supported
+#                     DESCRIPTION "TBC2 Firmware" # Note: Internationalization supported
+#                     VERSION "1.0.0"
+#                     CHECKABLE true)
 
 
-cpack_ifw_configure_component(lzxdfu 
-                    NAME "Firmware Update Utility"
-                    DISPLAY_NAME "Firmware Update Utility" # Note: Internationalization supported
-                    DESCRIPTION "Firmware Update Utility" # Note: Internationalization supported
-                    VERSION "1.0.0"
-                    CHECKABLE true)                    
+# cpack_ifw_configure_component(lzxdfu 
+#                     NAME "Firmware Update Utility"
+#                     DISPLAY_NAME "Firmware Update Utility" # Note: Internationalization supported
+#                     DESCRIPTION "Firmware Update Utility" # Note: Internationalization supported
+#                     VERSION "1.0.0"
+#                     CHECKABLE true)                    
 
 # cpack_ifw_configure_component(<compname> [COMMON] [ESSENTIAL] [VIRTUAL]
 #                     [FORCED_INSTALLATION] [REQUIRES_ADMIN_RIGHTS]
