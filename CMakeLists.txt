@@ -76,6 +76,6 @@ project(lzxtools VERSION 0.1.0)
     cpack_ifw_add_repository(lzxtools URL http://downloads.lzxindustries.net/installer/repository)
 
 
+add_subdirectory(components/lzxplnx)
 add_subdirectory(components/lzxcore-tbc2-base)
 add_subdirectory(components/lzxdfu)
-add_subdirectory(components/lzxplnx)
