@@ -67,6 +67,10 @@ cpack_ifw_configure_component(lzxtbc2
                      DISPLAY_NAME "TBC2 Firmware" # Note: Internationalization supported
                      DESCRIPTION "TBC2 Firmware" # Note: Internationalization supported
                      VERSION "1.0.0")
+cpack_ifw_configure_component(lzxdfu 
+                     DISPLAY_NAME "Firmware Update Utility" # Note: Internationalization supported
+                     DESCRIPTION "Firmware Update Utility" # Note: Internationalization supported
+                     VERSION "1.0.0")
 
 
 # cpack_ifw_configure_component(lzxdfu 
