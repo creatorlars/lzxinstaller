@@ -23,12 +23,14 @@ project(lzx VERSION 1.0.0)
 
 add_subdirectory(firmware/lzxplnx)
 add_subdirectory(firmware/lzxcore-tbc2-base)
+
 add_subdirectory(apps/lzxdfu)
 
-set(CPACK_COMPONENT_GROUP_FIRMWARE_DESCRIPTION "Firmware update packages for LZX Industries devices.")
+set(CPACK_COMPONENTS_ALL lzxtbc2 lzxdfu)
+
 set(CPACK_GENERATOR IFW)
 
-     set(CPACK_PACKAGE_NAME "LZX Installer")
+     set(CPACK_PACKAGE_NAME "LZX")
      set(CPACK_PACKAGE_FILE_NAME lzx)
      set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.lzxindustries.net")
      #set(CPACK_RESOURCE_FILE_README ${CMAKE_SOURCE_DIR}/src/apps/lzxtools/res/readme.txt)
@@ -60,3 +62,4 @@ cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/wi
 else()
 cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/Linux/repository)
 endif()
+
