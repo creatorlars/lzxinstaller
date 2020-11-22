@@ -62,27 +62,16 @@ cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/wi
 else()
 cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/Linux/repository)
 endif()
-
-                    
-cpack_add_component_group(firmware
-                    DISPLAY_NAME "Firmware"
-                    DESCRIPTION "Firmware update packages for LZX Industries devices.")
-
-cpack_add_component_group(apps
-                    DISPLAY_NAME "Apps"
-                    DESCRIPTION "Cross-platform desktop applications.")                    
+              
 
 cpack_add_component(lzxtbc2
-                    DISPLAY_NAME "TBC2"
+                    DISPLAY_NAME "TBC2 Firmware"
                     DESCRIPTION "Firmware for LZX Industries TBC2 module."
-                    GROUP firmware
                     EXPANDED)
                     
-
 cpack_add_component(lzxdfu
                     DISPLAY_NAME "Firmware Update Utility"
                     DESCRIPTION "Firmware update utility app for LZX Industries devices."
-                    GROUP apps
                     EXPANDED)
                     
 cpack_ifw_configure_component(lzxtbc2 
@@ -90,6 +79,3 @@ cpack_ifw_configure_component(lzxtbc2
 
 cpack_ifw_configure_component(lzxdfu 
                      VERSION "1.0.0")
-
-cpack_ifw_configure_component_group(firmware)
-cpack_ifw_configure_component_group(apps)
