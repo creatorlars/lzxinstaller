@@ -1,79 +1,174 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required (VERSION 3.10)
+cmake_policy(SET CMP0042 NEW)
+project(LZX
+        VERSION 1.0.0
+        DESCRIPTION "Desktop applications for LZX Industries devices."
+        LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(target ${PROJECT_NAME})
 
 if(WIN32)
-    set(Qt5Core_DIR C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5Core)
-    set(Qt5_DIR C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5)
-    set(QT_DIR C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5)
-    set(XILINX_VIVADO_TOOLCHAIN_FILE C:/Xilinx/Vivado/2018.2/settings64.bat)
-    set(XILINX_SDK_TOOLCHAIN_FILE C:/Xilinx/SDK/2018.2/settings64.bat)
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5)
-    set(CPACK_IFW_ROOT C:/Qt/Tools/QtInstallerFramework/4.0/bin)
+  set(Qt5_DIR "C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5" CACHE PATH "directory where Qt5Config.cmake exists.")
+elseif(APPLE)
+  set(Qt5_DIR "/usr/local/Qt-5.14.2/clang_64/lib/cmake/Qt5/" CACHE PATH "directory where Qt5Config.cmake exists.")
 else()
-    set(Qt5Core_DIR /usr/local/Qt-5.14.2/lib/cmake/Qt5Core)
-    set(Qt5_DIR /usr/local/Qt-5.14.2/lib/cmake/Qt5)
-    set(QT_DIR /usr/local/Qt-5.14.2/lib/cmake/Qt5)
-    set(XILINX_VIVADO_TOOLCHAIN_FILE /opt/Xilinx/Vivado/2018.2/settings64.sh)
-    set(XILINX_SDK_TOOLCHAIN_FILE /opt/Xilinx/SDK/2018.2/settings64.sh)
-    set(XILINX_PETALINUX_TOOLCHAIN_FILE /opt/pkg/petalinux/settings.sh)
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /usr/local/Qt-5.14.2/lib/cmake/Qt5)
-    set(CPACK_IFW_ROOT /usr/local/tools)
+  set(Qt5_DIR "/usr/local/Qt-5.14.2/lib/cmake/Qt5" CACHE PATH "directory where Qt5Config.cmake exists.")
 endif()
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 
-project(lzx VERSION 1.0.0)
 
-add_subdirectory(firmware/lzxplnx)
-add_subdirectory(firmware/lzxcore-tbc2-base)
 
-add_subdirectory(apps/lzxdfu)
-
-set(CPACK_COMPONENTS_ALL lzxtbc2 lzxdfu)
-
-set(CPACK_GENERATOR IFW)
-
-set(CPACK_PACKAGE_NAME "LZX")
-     set(CPACK_PACKAGE_FILE_NAME lzx)
-     set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.lzxindustries.net")
-     set(CPACK_PACKAGE_INSTALL_DIRECTORY "LZX")
-     set(CPACK_PACKAGE_VERSION 1.0.0) # Version of installer
-     set(CPACK_PACKAGE_VENDOR "LZX Industries")
-    set(CPACK_IFW_VERBOSE ON)
-    set(CPACK_IFW_PACKAGE_TITLE "LZX")
-    set(CPACK_IFW_PRODUCT_URL "https://www.lzxindustries.net")
-    set(CPACK_IFW_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/res/lzx)
-    set(CPACK_IFW_PACKAGE_ICON ${CMAKE_SOURCE_DIR}/res/window.png)
-    set(CPACK_IFW_PACKAGE_LOGO ${CMAKE_SOURCE_DIR}/res/logo.png)
-    set(CPACK_IFW_PACKAGE_WATERMARK ${CMAKE_SOURCE_DIR}/res/watermark.png)
-    set(CPACK_IFW_PACKAGE_BANNER ${CMAKE_SOURCE_DIR}/res/banner.png)
-    set(CPACK_IFW_PACKAGE_BACKGROUND ${CMAKE_SOURCE_DIR}/res/background.png)
-    set(CPACK_IFW_PACKAGE_WIZARD_STYLE "Modern")
-    set(CPACK_IFW_PACKAGE_TITLE_COLOR "#000000")
-    set(CPACK_IFW_PACKAGE_MAINTENANCE_TOOL_NAME update)
-    set(CPACK_IFW_PACKAGE_MAINTENANCE_TOOL_INI_FILE update.ini)
-    set(CPACK_IFW_PACKAGE_START_MENU_DIRECTORY "LZX")
-    set(CPACK_IFW_DOWNLOAD_ALL TRUE)
-
-include(CPack)
-include(CPackIFW)  
-
+##---------------------------------------------------------------------------------
 if(WIN32)
-cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/win64/repository)
-else()
-cpack_ifw_add_repository(lzx URL http://downloads.lzxindustries.net/installer/Linux/repository)
+  set(CMAKE_WIN32_EXECUTABLE ON)
+elseif(APPLE)
+  set(CMAKE_MACOSX_BUNDLE ON)
 endif()
-              
 
-cpack_add_component(lzxtbc2
-                    DISPLAY_NAME "TBC2 Firmware"
-                    DESCRIPTION "Firmware for LZX Industries TBC2 module."
-                    EXPANDED)
-                    
-cpack_add_component(lzxdfu
-                    DISPLAY_NAME "Firmware Update Utility"
-                    DESCRIPTION "Firmware update utility app for LZX Industries devices."
-                    EXPANDED)
-                    
-cpack_ifw_configure_component(lzxtbc2 
-                     VERSION "1.0.0")
+project(${target} LANGUAGES CXX)
 
-cpack_ifw_configure_component(lzxdfu 
-                     VERSION "1.0.0")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
+
+set(TS_FILES src/lzxdfu_en_US.ts)
+
+if(ANDROID)
+  add_library(${target} SHARED
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.h
+    src/mainwindow.ui
+    ${TS_FILES}
+  )
+else()
+  add_executable(${target}
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.h
+    src/mainwindow.ui
+    ${TS_FILES}
+  )
+endif()
+
+target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+
+# set(target ${PROJECT_NAME})
+
+# add_executable(${target} src/main.cpp src/mainwindow.cpp)
+# target_include_directories(${target} PRIVATE src ${CMAKE_BINARY_DIR})
+# target_link_libraries(${target} PRIVATE Qt5::Core Qt5::Widgets)
+
+# ## Qt5 configurations
+# set(CMAKE_AUTOMOC ON)
+# set(CMAKE_AUTOUIC ON)
+# set(CMAKE_AUTORCC ON)
+
+# set_target_properties(${target} PROPERTIES AUTORCC_OPTIONS "--compress;9")
+
+if(UNIX AND NOT APPLE)
+    install(TARGETS ${target} RUNTIME DESTINATION bin)
+elseif(WIN32)
+    install(TARGETS ${target} RUNTIME DESTINATION bin)
+elseif(APPLE)
+    set(CMAKE_MACOSX_BUNDLE ON)
+    set(CMAKE_MACOSX_RPATH ON)
+    install(TARGETS ${target} BUNDLE DESTINATION .
+                              RUNTIME DESTINATION .)
+    set_source_files_properties(resources/icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    set_target_properties(${target}
+                          PROPERTIES
+                          MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
+                          MACOSX_BUNDLE_INFO_STRING "${PROJECT_NAME} Copyright (c) 2020 LZX Industries"
+                          MACOSX_BUNDLE_ICON_FILE Icon.icns
+                          MACOSX_BUNDLE_GUI_IDENTIFIER "${PROJECT_NAME}"
+                          MACOSX_BUNDLE_LONG_VERSION_STRING "${PROJECT_VERSION}"
+                          MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
+                          MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
+                          MACOSX_BUNDLE_COPYRIGHT " Copyright (c) 2020 LZX Industries"
+                          )
+endif()
+
+set(desktop.path applications)
+set(desktop.files resources/example.desktop)
+set(icon.path icons/hicolor/64x64/apps)
+set(icon.files resources/icon64.png)
+set(iconsvg.path icons/hicolor/scalable/apps)
+set(iconsvg.files resources/icon.svg)
+foreach(items IN ITEMS desktop icon iconsvg)
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${${items}.files}
+            DESTINATION share/${${items}.path}
+            PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
+endforeach()
+# Components:
+if(CMAKE_BUILD_TYPE_UPPER MATCHES "^(DEBUG|RELWITHDEBINFO)$")
+    set(CPACK_STRIP_FILES FALSE)
+else()
+    set(CPACK_STRIP_FILES TRUE)
+endif()
+
+include(${CMAKE_CURRENT_LIST_DIR}/Packaging.cmake)
+
+##---------------------------------------------------------------------------------
+
+option(CMake_RUN_CLANG_TIDY "Run clang-tidy with the compiler." OFF)
+if(CMake_RUN_CLANG_TIDY)
+  if(CMake_SOURCE_DIR STREQUAL CMake_BINARY_DIR)
+    message(FATAL_ERROR "CMake_RUN_CLANG_TIDY requires an out-of-source build!")
+  endif()
+  find_program(CLANG_TIDY_COMMAND NAMES clang-tidy)
+  if(NOT CLANG_TIDY_COMMAND)
+    message(WARNING "CMake_RUN_CLANG_TIDY is ON but clang-tidy is not found!")
+    set(CMAKE_CXX_CLANG_TIDY "" CACHE STRING "" FORCE)
+  else()
+    set(CLANG_TIDY_CHECKS "-*,modernize-*")
+    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND};-checks=${CLANG_TIDY_CHECKS};-header-filter='${CMAKE_SOURCE_DIR}/src/*'")
+  endif()
+
+  # Create a preprocessor definition that depends on .clang-tidy content so
+  # the compile command will change when .clang-tidy changes.  This ensures
+  # that a subsequent build re-runs clang-tidy on all sources even if they
+  # do not otherwise need to be recompiled.  Nothing actually uses this
+  # definition.  We add it to targets on which we run clang-tidy just to
+  # get the build dependency on the .clang-tidy file.
+  file(SHA1 ${CMAKE_CURRENT_SOURCE_DIR}/.clang-tidy clang_tidy_sha1)
+  set(CLANG_TIDY_DEFINITIONS "CLANG_TIDY_SHA1=${clang_tidy_sha1}")
+  unset(clang_tidy_sha1)
+
+endif()
+
+option(CMake_RUN_IWYU "Run include-what-you-use with the compiler." OFF)
+if(CMake_RUN_IWYU)
+  find_program(IWYU_COMMAND NAMES include-what-you-use iwyu)
+  if(NOT IWYU_COMMAND)
+    message(WARNING "CMake_RUN_IWYU is ON but include-what-you-use is not found!")
+  else()
+    set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE
+      "${IWYU_COMMAND};-Xiwyu;--mapping_file=${CMake_SOURCE_DIR}/Utilities/IWYU/mapping.imp;-w")
+    list(APPEND CMAKE_CXX_INCLUDE_WHAT_YOU_USE ${CMake_IWYU_OPTIONS})
+  endif()
+endif()
+
+# Clazy is a Qt oriented code checker based on clang framework. Krazy's little brother.
+set(CMake_RUN_CLAZY OFF CACHE BOOL "Add clazy check for builds")
+if(ENABLE_CLAZY)
+  find_program(CLAZY_EXECUTABLE NAMES clazy PATHS /usr/local/llvm/bin /usr/local/bin /opt/clazy/bin)
+  if(CLAZY_EXECUTABLE)
+    message(STATUS "clazy found: ${CLAZY_EXECUTABLE}")
+  else()
+    message(AUTHOR_WARNING "clazy not found.")
+  endif()
+endif()
+
+# vim: ts=2 sw=2 sts=2 et
