@@ -12,8 +12,7 @@ pipeline {
                 
                 sh 'mkdir build && cd build && cmake .. && cmake --build . --target bundle'
                 sh 'mkdir installer'
-                sh 'mkdir installer/Linux'
-                sh 'mv build/LZX-0.1.1-Linux.run installer/Linux/LZX-0.1.1-Linux.run'
+                sh 'cp build/_CPack_Packages/** installer'
                 //sh 'mv build/_CPack_Packages/Linux/IFW/LZX-0.1.1-win64/repository installer/Linux/repository'
                 archiveArtifacts artifacts: 'installer/**'
             }
@@ -31,9 +30,8 @@ pipeline {
                 bat 'mkdir build && cd build && mkdir bin'
                 bat 'cd build && cmake .. && cmake --build . --config Release --target bundle'
                 bat 'mkdir installer'
-                bat 'mkdir installer\\win64'
-
-                bat 'move build\\LZX-0.1.1-win64.exe installer\\win64'
+                
+                bat 'move build\\_CPack_Packages\\** installer'
                 //bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
                 archiveArtifacts artifacts: 'installer/**'
             }
