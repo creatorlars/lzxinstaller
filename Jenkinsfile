@@ -34,8 +34,8 @@ pipeline {
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
 
-                //bat 'move build\\LZX-0.1.1-win64.exe installer\\win64'
-                //bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
+                bat 'move build\\LZX-0.1.1-win64.exe installer\\win64'
+                bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
                 archiveArtifacts artifacts: 'installer/**'
             }
         }
