@@ -26,10 +26,12 @@ pipeline {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
                 copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util') 
-                
-                bat 'mkdir build && cd build && cmake .. && cmake --build . --config Release --target bundle'
+                bat 'mkdir build && cd build && mkdir bin'
+                bat 'cd build && cd bin && python3 -m aqt 5.14.2 windows desktop win64_msvc_2017_64'
+                bat 'cd build && cmake .. && cmake --build . --config Release --target bundle'
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
+
                 //bat 'move build\\LZX-0.1.1-win64.exe installer\\win64'
                 //bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
                 //archiveArtifacts artifacts: 'installer/win64/**'
@@ -54,7 +56,7 @@ pipeline {
 //         sudo apt-get -q update
 //         sudo apt-get install -y -q cmake ninja-build make g++ rpm p7zip-full
 //         sudo apt-get install -y -q qtbase5-dev qt5-style-plugins
-//         wget -q -O linuxdeployqt https://github.com/probonopd/linuxdeployqt/releases/download/$(linuxdeployqtVersion)/linuxdeployqt-$(linuxdeployqtVersion)-x86_64.AppImage
+//         wget -q -O linuxdeployqt https://github.com/probonopd/linuxdeployqt/releases/download/6/linuxdeployqt-6-x86_64.AppImage
 //         sudo install linuxdeployqt /usr/local/bin/
 //       displayName: install dependencies
 //     - task: CMake@1
