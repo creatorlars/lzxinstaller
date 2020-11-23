@@ -82,16 +82,16 @@ qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
 if(UNIX AND NOT APPLE)
     install(TARGETS ${target} RUNTIME DESTINATION bin)
-    install(FILES dfu-util/distrib/linux64/dfu-util dfu-util/distrib/linux64/dfu-suffix dfu-util/distrib/linux64/dfu-prefix DESTINATION bin)
+    install(FILES ${CMAKE_SOURCE_DIR}/dfu-util/distrib/linux64/dfu-util ${CMAKE_SOURCE_DIR}/dfu-util/distrib/linux64/dfu-suffix ${CMAKE_SOURCE_DIR}/dfu-util/distrib/linux64/dfu-prefix DESTINATION bin)
 elseif(WIN32)
     install(TARGETS ${target} RUNTIME DESTINATION bin)
-    install(FILES dfu-util/distrib/windows/dfu-util.exe dfu-util/distrib/windows/dfu-suffix.exe dfu-util/distrib/windows/dfu-prefix.exe DESTINATION bin)
+    install(FILES ${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/dfu-util.exe ${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/dfu-suffix.exe ${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/dfu-prefix.exe	${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/libwinpthread-1.dll	DESTINATION bin)
 elseif(APPLE)
     set(CMAKE_MACOSX_BUNDLE ON)
     set(CMAKE_MACOSX_RPATH ON)
     install(TARGETS ${target} BUNDLE DESTINATION .
                               RUNTIME DESTINATION .)
-    install(FILES dfu-util/distrib/osx/dfu-util dfu-util/distrib/osx/dfu-suffix dfu-util/distrib/osx/dfu-prefix DESTINATION .)
+    install(FILES ${CMAKE_SOURCE_DIR}/dfu-util/distrib/osx/dfu-util ${CMAKE_SOURCE_DIR}/dfu-util/distrib/osx/dfu-suffix ${CMAKE_SOURCE_DIR}/dfu-util/distrib/osx/dfu-prefix DESTINATION .)
 
     set_source_files_properties(resources/icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
     set_target_properties(${target}
