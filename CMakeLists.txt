@@ -108,7 +108,7 @@ elseif(APPLE)
 endif()
 
 set(desktop.path applications)
-set(desktop.files resources/example.desktop)
+set(desktop.files resources/lzx.desktop)
 set(icon.path icons/hicolor/64x64/apps)
 set(icon.files resources/icon64.png)
 set(iconsvg.path icons/hicolor/scalable/apps)
