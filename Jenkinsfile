@@ -26,7 +26,7 @@ pipeline {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
                 copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util') 
-                bat 'cinst --no-progress -y 7zip'
+                //bat 'cinst --no-progress -y 7zip'
                 bat 'pip install aqtinstall'
                 bat 'mkdir build && cd build && mkdir bin'
                 bat 'cd build && cd bin && python -m aqt install 5.14.2 windows desktop win64_msvc_2017_64'
