@@ -29,7 +29,7 @@ pipeline {
                 //bat 'cinst --no-progress -y 7zip'
                 bat 'pip install aqtinstall'
                 bat 'mkdir build && cd build && mkdir bin'
-                bat 'cd build && cd bin && python -m aqt install 5.14.2 windows desktop win64_msvc_2017_64'
+                bat 'cd build && cd bin && python -m aqt install 5.14.2 windows desktop win64_msvc2017_64'
                 bat 'cd build && cmake -G "Visual Studio 15 2017 Win64" .. && cmake --build . --config Release --target bundle'
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
