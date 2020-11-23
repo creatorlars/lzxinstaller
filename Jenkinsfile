@@ -27,7 +27,7 @@ pipeline {
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
                 copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util') 
                 bat 'mkdir build && cd build && mkdir bin'
-                bat 'cd build && cd bin && python -m aqt 5.14.2 windows desktop win64_msvc_2017_64'
+                bat 'cd build && cd bin && python -m aqt install 5.14.2 windows desktop win64_msvc_2017_64'
                 bat 'cd build && cmake .. && cmake --build . --config Release --target bundle'
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
