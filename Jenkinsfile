@@ -13,7 +13,7 @@ pipeline {
                 sh 'mkdir installer'
                 sh 'mkdir installer/Linux'
                 sh 'mv build/LZX-0.1.1-Linux.run installer/Linux/LZX-0.1.1-Linux.run'
-                sh 'mv build/_CPack_Packages/Linux/IFW/lzx/repository installer/Linux/repository'
+                //sh 'mv build/_CPack_Packages/Linux/IFW/LZX-0.1.1-win64/repository installer/Linux/repository'
                 archiveArtifacts artifacts: 'installer/Linux/**'
             }
         }
@@ -29,7 +29,7 @@ pipeline {
                 bat 'mkdir installer'
                 bat 'mkdir installer\\win64'
                 bat 'move build\\LZX-0.1.1-win64.exe installer\\win64'
-                bat 'move build\\_CPack_Packages\\win64\\IFW\\lzx\\repository installer\\win64'
+                //bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
                 archiveArtifacts artifacts: 'installer/win64/**'
             }
         }
