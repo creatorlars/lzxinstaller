@@ -15,13 +15,13 @@ BEGIN
     BEGIN
         BLOCK "000004b0"
         BEGIN
-            VALUE "CompanyName", "The Qt Company Ltd"
-            VALUE "FileDescription", "QtQuick Window Example"
+            VALUE "CompanyName", "LZX Industries"
+            VALUE "FileDescription", "LZX"
             VALUE "FileVersion", "1.0.0.0"
-            VALUE "LegalCopyright", "Copyright (C) 2015 The Qt Company Ltd."
+            VALUE "LegalCopyright", "Copyright (C) 2020 LZX Industries LLC"
             VALUE "InternalName", "window"
             VALUE "OriginalFilename", "window.exe"
-            VALUE "ProductName", "QtQuick Window Example"
+            VALUE "ProductName", "LZX"
             VALUE "ProductVersion", "1.0.0.0"
         END
     END

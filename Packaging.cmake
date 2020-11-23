@@ -64,9 +64,9 @@ function(macdeployqt bundle targetdir _PACKAGER)
     include(InstallRequiredSystemLibraries)
 endfunction()
 
-set(CPACK_PACKAGE_VENDOR "Example_vendor")
+set(CPACK_PACKAGE_VENDOR "LZX Industries")
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
-set(CPACK_PACKAGE_CONTACT "Example_vendor <example@example.com>")
+set(CPACK_PACKAGE_CONTACT "LZX Industries <sales@lzxindustries.net>")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_DESCRIPTION}")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/README.md")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
@@ -78,7 +78,7 @@ set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
 set(CPACK_PACKAGE_DIRECTORY "${CMAKE_BINARY_DIR}")
 
 # set human names to exetuables
-set(CPACK_PACKAGE_EXECUTABLES "${PROJECT_NAME}" "Example Apps")
+set(CPACK_PACKAGE_EXECUTABLES "${PROJECT_NAME}" "LZX")
 set(CPACK_CREATE_DESKTOP_LINKS "${PROJECT_NAME}")
 set(CPACK_STRIP_FILES TRUE)
 
