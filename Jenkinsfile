@@ -8,6 +8,7 @@ pipeline {
             steps {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
+                copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util')   
                 
                 sh 'mkdir build && cd build && cmake .. && cmake --build . --target bundle'
                 sh 'mkdir installer'
@@ -24,6 +25,7 @@ pipeline {
             steps {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
+                copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-utils') 
                 
                 bat 'mkdir build && cd build && cmake .. && cmake --build . --config Release --target bundle'
                 bat 'mkdir installer'
