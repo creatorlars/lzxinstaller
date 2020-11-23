@@ -63,22 +63,12 @@ else()
   )
 endif()
 
-target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
-# set(target ${PROJECT_NAME})
 
-# add_executable(${target} src/main.cpp src/mainwindow.cpp)
-# target_include_directories(${target} PRIVATE src ${CMAKE_BINARY_DIR})
-# target_link_libraries(${target} PRIVATE Qt5::Core Qt5::Widgets)
-
-# ## Qt5 configurations
-# set(CMAKE_AUTOMOC ON)
-# set(CMAKE_AUTOUIC ON)
-# set(CMAKE_AUTORCC ON)
-
-# set_target_properties(${target} PROPERTIES AUTORCC_OPTIONS "--compress;9")
+set_target_properties(${target} PROPERTIES AUTORCC_OPTIONS "--compress;9")
 
 if(UNIX AND NOT APPLE)
     install(TARGETS ${target} RUNTIME DESTINATION bin)
