@@ -6,11 +6,11 @@ pipeline {
                 label 'master'
             }
             steps {
-                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
-                copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
+                //copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
+                //copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
                 copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util')  
                 sh 'rm -rf build'
-                sh 'mkdir build && cd build && cmake .. && cmake --build . --config Rel/ease && cmake --build . --target bundle --config Release'
+                sh 'mkdir build && cd build && cmake .. && cmake --build . --config Release && cmake --build . --target bundle --config Release'
                 //sh 'mkdir installer'
                 //sh 'cp build/_CPack_Packages/** installer's
                 //sh 'mv build/_CPack_Packages/Linux/IFW/LZX-0.1.1-win64/repository installer/Linux/repository'
@@ -23,8 +23,8 @@ pipeline {
                 label 'lzx-windows'
             }
             steps {
-                copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
-                copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
+                //copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
+                //copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
                 copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util') 
                 //bat 'cinst --no-progress -y 7zip'
                 //bat 'pip install aqtinstall'

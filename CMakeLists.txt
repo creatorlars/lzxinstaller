@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.10)
 
-add_subdirectory(lib/nodeeditor)
+add_subdirectory(lib/nodes)
 
 cmake_policy(SET CMP0042 NEW)
 project(LZX
@@ -47,7 +47,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 
-set(TS_FILES src/lzxdfu_en_US.ts)
+set(TS_FILES src/lzx_en_US.ts)
+qt5_add_resources(RESOURCES ./resources/firmware.qrc)
+qt5_add_resources(RESOURCES ./resources/stills.qrc)
 
 if(ANDROID)
   add_library(${target} SHARED
@@ -81,16 +83,16 @@ set_target_properties(${target} PROPERTIES AUTORCC_OPTIONS "--compress;9")
 
 if(UNIX AND NOT APPLE)
     install(TARGETS ${target} RUNTIME DESTINATION bin)
-    install(FILES ${CMAKE_SOURCE_DIR}/dfu-util/distrib/linux64/dfu-util ${CMAKE_SOURCE_DIR}/dfu-util/distrib/linux64/dfu-suffix ${CMAKE_SOURCE_DIR}/dfu-util/distrib/linux64/dfu-prefix DESTINATION bin)
+    install(FILES ${CMAKE_SOURCE_DIR}/lib/dfu/linux64/dfu-util ${CMAKE_SOURCE_DIR}/lib/dfu/linux64/dfu-suffix ${CMAKE_SOURCE_DIR}/lib/dfu/linux64/dfu-prefix DESTINATION bin)
 elseif(WIN32)
     install(TARGETS ${target} RUNTIME DESTINATION bin)
-    install(FILES ${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/dfu-util.exe ${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/dfu-suffix.exe ${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/dfu-prefix.exe	${CMAKE_SOURCE_DIR}/dfu-util/distrib/windows/libwinpthread-1.dll DESTINATION bin)
+    install(FILES ${CMAKE_SOURCE_DIR}/lib/dfu/windows/dfu-util.exe ${CMAKE_SOURCE_DIR}/lib/dfu/windows/dfu-suffix.exe ${CMAKE_SOURCE_DIR}/lib/dfu/windows/dfu-prefix.exe	${CMAKE_SOURCE_DIR}/lib/dfu/windows/libwinpthread-1.dll DESTINATION bin)
 elseif(APPLE)
     set(CMAKE_MACOSX_BUNDLE ON)
     set(CMAKE_MACOSX_RPATH ON)
     install(TARGETS ${target} BUNDLE DESTINATION .
                               RUNTIME DESTINATION .)
-    install(FILES ${CMAKE_SOURCE_DIR}/dfu-util/distrib/osx/dfu-util ${CMAKE_SOURCE_DIR}/dfu-util/distrib/osx/dfu-suffix ${CMAKE_SOURCE_DIR}/dfu-util/distrib/osx/dfu-prefix DESTINATION .)
+    install(FILES ${CMAKE_SOURCE_DIR}/lib/dfu/osx/dfu-util ${CMAKE_SOURCE_DIR}/lib/dfu/osx/dfu-suffix ${CMAKE_SOURCE_DIR}/lib/dfu/osx/dfu-prefix DESTINATION .)
 
     set_source_files_properties(resources/icon.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
     set_target_properties(${target}

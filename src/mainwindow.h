@@ -1,7 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QFile>
+#include <QProcess>
 #include <QMainWindow>
+#include <QFileDialog>
+#include <QScrollBar>
+
 #include "firmwareupdatedialog.h"
 
 
@@ -27,5 +32,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QString m_binaryPath;
+    //QProcess m_dfuUtilProcess;
 };
 #endif // MAINWINDOW_H
