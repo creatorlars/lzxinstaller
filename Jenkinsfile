@@ -11,10 +11,10 @@ pipeline {
                 copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util')  
                 sh 'rm -rf build'
                 sh 'mkdir build && cd build && cmake .. && cmake --build . --config Release && cmake --build . --target bundle --config Release'
-                sh 'mkdir installer'
-                sh 'cp build/_CPack_Packages/** installer'
+                //sh 'mkdir installer'
+                //sh 'cp build/_CPack_Packages/** installer'
                 //sh 'mv build/_CPack_Packages/Linux/IFW/LZX-0.1.1-win64/repository installer/Linux/repository'
-                archiveArtifacts artifacts: 'installer/**'
+                //archiveArtifacts artifacts: 'installer/**'
             }
         }
         stage('Build Windows') {
