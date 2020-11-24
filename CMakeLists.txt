@@ -64,9 +64,6 @@ else()
   )
 endif()
 
-set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/qt5app.rc")
-add_executable(qt5app main.cpp ${APP_ICON_RESOURCE_WINDOWS})
-
 target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
