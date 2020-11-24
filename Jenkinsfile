@@ -15,7 +15,7 @@ pipeline {
                 //sh 'cp build/_CPack_Packages/** installer's
                 //sh 'mv build/_CPack_Packages/Linux/IFW/LZX-0.1.1-win64/repository installer/Linux/repository'
                 //archiveArtifacts artifacts: 'installer/**'
-                archiveArtifacts artifacts: '${WORKSPACE}/build/_CPack_Packages/**'
+                archiveArtifacts artifacts: 'build/_CPack_Packages/**'
             }
         }
         stage('Build Windows') {
@@ -34,7 +34,7 @@ pipeline {
                 
                 //bat 'move build\\_CPack_Packages\\** installer'
                 //bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
-                archiveArtifacts artifacts: '${WORKSPACE}\\build\\_CPack_Packages\\**'
+                archiveArtifacts artifacts: 'build\\_CPack_Packages\\**'
             }
         }
     }
