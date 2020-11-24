@@ -10,12 +10,12 @@ pipeline {
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
                 copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util')  
                 sh 'rm -rf build'
-                sh 'mkdir build && cd build && cmake .. && cmake --build . --config Release && cmake --build . --target bundle --config Release'
+                sh 'mkdir build && cd build && cmake .. && cmake --build . --config Rel/ease && cmake --build . --target bundle --config Release'
                 //sh 'mkdir installer'
                 //sh 'cp build/_CPack_Packages/** installer's
                 //sh 'mv build/_CPack_Packages/Linux/IFW/LZX-0.1.1-win64/repository installer/Linux/repository'
                 //archiveArtifacts artifacts: 'installer/**'
-                archiveArtifacts artifacts: 'build/_CPack_Packages'
+                archiveArtifacts artifacts: '${WORKSPACE}/build/_CPack_Packages/**'
             }
         }
         stage('Build Windows') {
@@ -34,7 +34,7 @@ pipeline {
                 
                 //bat 'move build\\_CPack_Packages\\** installer'
                 //bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
-                archiveArtifacts artifacts: 'build/_CPack_Packages'
+                archiveArtifacts artifacts: '${WORKSPACE}\\build\\_CPack_Packages\\**'
             }
         }
     }
