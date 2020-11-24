@@ -7,8 +7,11 @@ find_program(LINUXDEPLOYQT_EXECUTABLE linuxdeployqt linuxdeployqt-continuous-x86
 find_program(MACDEPLOYQT_EXECUTABLE macdeployqt HINTS "${_qt_bin_dir}")
 find_program(MACDEPLOYQTFIX_EXECUTABLE macdeployqtfix.py HINTS "${_qt_bin_dir}")
 find_package(Python)
-
-set(CPACK_IFW_ROOT $ENV{HOME}/Qt/Tools/QtInstallerFramework/4.0/ CACHE PATH "Qt Installer Framework installation base path")
+if(WIN32)
+set(CPACK_IFW_ROOT C:/Qt/Tools/QtInstallerFramework/4.0/ CACHE PATH "Qt Installer Framework installation base path")
+else()
+set(CPACK_IFW_ROOT /usr/local/Tools/QtInstallerFramework/4.0/ CACHE PATH "Qt Installer Framework installation base path")
+endif()
 find_program(BINARYCREATOR_EXECUTABLE binarycreator HINTS "${_qt_bin_dir}" ${CPACK_IFW_ROOT}/bin)
 
 mark_as_advanced(WINDEPLOYQT_EXECUTABLE LINUXDEPLOYQT_EXECUTABLE MACDEPLOYQT_EXECUTABLE)
