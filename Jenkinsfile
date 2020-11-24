@@ -8,8 +8,8 @@ pipeline {
             steps {
                 copyArtifacts(projectName: 'lzxcore-tbc2-base', target: 'firmware')   
                 copyArtifacts(projectName: 'lzxplnx', target: 'firmware')   
-                copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util')   
-                
+                copyArtifacts(projectName: 'dfu-utils-cross', target: 'dfu-util')  
+                sh 'export PATH="/usr/lib/x86_64-linux-gnu/qt5/bin:$PATH"'
                 sh 'mkdir build && cd build && cmake .. && cmake --build . --target bundle'
                 sh 'mkdir installer'
                 sh 'cp build/_CPack_Packages/** installer'
