@@ -1,4 +1,7 @@
 cmake_minimum_required (VERSION 3.10)
+
+add_subdirectory(lib/nodeeditor)
+
 cmake_policy(SET CMP0042 NEW)
 project(LZX
         VERSION 1.0.0
@@ -48,6 +51,9 @@ set(TS_FILES src/lzxdfu_en_US.ts)
 
 if(ANDROID)
   add_library(${target} SHARED
+    src/firmwareupdatedialog.cpp
+    src/firmwareupdatedialog.ui
+    src/firmwareupdatedialog.h
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.h
@@ -56,6 +62,9 @@ if(ANDROID)
   )
 else()
   add_executable(${target}
+    src/firmwareupdatedialog.cpp
+    src/firmwareupdatedialog.ui
+    src/firmwareupdatedialog.h
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.h
@@ -64,7 +73,7 @@ else()
   )
 endif()
 
-target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets nodes)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 

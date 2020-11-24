@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/tbc2"/>
+    <qresource prefix="/memorypalace"/>
+    <qresource prefix="/chromagnon"/>
+    <qresource prefix="/diver"/>
+    <qresource prefix="/eschersketch"/>
+</RCC>

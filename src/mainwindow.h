@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "firmwareupdatedialog.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,6 +22,8 @@ private slots:
     void on_detectHardwareButton_clicked();
 
     void on_deviceMenu_currentIndexChanged(const QString &arg1);
+
+    void on_actionDevice_Firmware_Update_triggered();
 
 private:
     Ui::MainWindow *ui;

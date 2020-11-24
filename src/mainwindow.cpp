@@ -27,3 +27,9 @@ void MainWindow::on_deviceMenu_currentIndexChanged(const QString &arg1)
         ui->detectHardwareButton->setEnabled(false);
     }
 }
+
+void MainWindow::on_actionDevice_Firmware_Update_triggered()
+{
+    static FirmwareUpdateDialog d;
+    d.show();
+}
