@@ -7,8 +7,6 @@
 #include <QFileDialog>
 #include <QScrollBar>
 
-#include "firmwareupdatedialog.h"
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,9 +23,9 @@ public:
 private slots:
 
     void on_detectHardwareButton_clicked();
+    void on_firmwareMenu_currentIndexChanged(const QString &arg1);
     void on_deviceMenu_currentIndexChanged(const QString &arg1);
-    void on_actionDevice_Firmware_Update_triggered();
-	void browseFiles();
+
 	void dfuFlashBinary();
 	void dfuListDevices();
 	void dfuCommandStatus();
@@ -38,6 +36,7 @@ private:
 
     Ui::MainWindow *ui;
     QString m_binaryPath;
+    QString m_currentFirmware;
     QProcess m_dfuUtilProcess;
 };
 #endif // MAINWINDOW_H

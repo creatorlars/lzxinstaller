@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->updateFirmwareButton->setEnabled(false);
+    ui->detectHardwareButton->setEnabled(false);
+    ui->deviceMenu->setEnabled(false);
+    ui->deviceMenuLabel->setEnabled(false);
 
     // Connections    
 	connect( &m_dfuUtilProcess, SIGNAL( readyReadStandardOutput() ), this, SLOT( dfuCommandStatus() ) );
@@ -27,56 +31,69 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_detectHardwareButton_clicked()
-{
-}
-
-void MainWindow::on_deviceMenu_currentIndexChanged(const QString &arg1)
-{
-    if (arg1 != "")
-    {
-        ui->detectHardwareButton->setEnabled(true);
-    }
-    else
-    {
-        ui->detectHardwareButton->setEnabled(false);
-    }
-}
-
-void MainWindow::on_actionDevice_Firmware_Update_triggered()
-{
-    // static FirmwareUpdateDialog d;
-    // d.show();
-}
-
-
-void MainWindow::browseFiles()
-{
-	// ui->fileBrowseLineEdit->setText(
-	// 	QFileDialog::getOpenFileName(
-	// 		this,
-	// 		tr("Select dfu binary"),
-	// 		QString(),
-	// 		tr("DFU Binary ( *.dfu.bin *.bin );;All Files ( * )")
-	// 	)
-	// );
-}
 
 // Make sure dfu-util can be found
 bool MainWindow::checkDFU( QFile *dfuUtil )
 {
-	// Make sure dfu-util exists
-	// if ( !dfuUtil->exists() )
-	// {
-	// 	// Error, dfu-util not installed locally
-	// 	QString output = tr("dfu-util cannot be found. Either build dfu-util and copy the binary to this directory or symlink it.\ne.g. ln -s /usr/bin/dfu-util %1/.").arg( binaryPath );
-	// 	ui->dfuResultsTextEdit->append( output );
+	if ( !dfuUtil->exists() )
+	{
+		// Error, dfu-util not installed locally
+		QString output = tr("dfu-util cannot be found. Either build dfu-util and copy the binary to this directory or symlink it.\ne.g. ln -s /usr/bin/dfu-util %1/.").arg( m_binaryPath );
 
-	// 	return false;
-	// }
+        ui->textConsole->appendPlainText(output);
+		return false;
+	}
 
 	return true;
 }
+
+
+void MainWindow::on_detectHardwareButton_clicked()
+{
+     #ifdef WIN32
+         QFile dfuUtil( m_binaryPath + "/" + "dfu-util.exe");
+     #else
+         QFile dfuUtil( m_binaryPath + "/" + "dfu-util" );
+     #endif
+
+        if(checkDFU(&dfuUtil) && m_currentFirmware!=""){
+
+            dfuListDevices();
+            ui->deviceMenu->setEnabled(true);
+            ui->deviceMenuLabel->setEnabled(true);
+
+        } else {
+            ui->deviceMenu->setEnabled(false);
+            ui->deviceMenuLabel->setEnabled(false);
+            ui->updateFirmwareButton->setEnabled(false);
+        }
+
+}
+
+void MainWindow::on_firmwareMenu_currentIndexChanged(const QString &arg1)
+{
+    m_currentFirmware = arg1;
+    if(arg1!="") {
+        ui->detectHardwareButton->setEnabled(true);
+    } else {
+        ui->detectHardwareButton->setEnabled(false);
+        ui->updateFirmwareButton->setEnabled(false);
+        ui->deviceMenu->setEnabled(false);
+        ui->deviceMenuLabel->setEnabled(false);
+    }
+}
+
+void MainWindow::on_deviceMenu_currentIndexChanged(const QString &arg1)
+{
+
+    if(arg1!="") {
+        ui->updateFirmwareButton->setEnabled(true);
+    } else {
+        ui->updateFirmwareButton->setEnabled(false);
+    }
+}
+
+
 
 void MainWindow::dfuFlashBinary()
 {
@@ -123,43 +140,41 @@ void MainWindow::dfuFlashBinary()
 
 void MainWindow::dfuListDevices()
 {
-// #ifdef WIN32
-// 	QFile dfuUtil( binaryPath + "/" + "dfu-util.exe");
-// #else
-// 	QFile dfuUtil( binaryPath + "/" + "dfu-util" );
-// #endif
+ #ifdef WIN32
+    QFile dfuUtil( m_binaryPath + "/" + "dfu-util.exe");
+ #else
+    QFile dfuUtil( m_binaryPath + "/" + "dfu-util" );
+ #endif
 
-// 	// Only run dfu-util if it exists
-// 	if ( !checkDFU( &dfuUtil ) )
-// 	{
-// 		return;
-// 	}
+    // Only run dfu-util if it exists
+    if ( !checkDFU( &dfuUtil ) )
+    {
+        return;
+    }
 
-// 	// Run dfu-util command
-// 	QString dfuCmd = QString("%1 -l").arg( dfuUtil.fileName() );
-// 	dfuUtilProcess.start( dfuCmd );
+    // Run dfu-util command
+    QString dfuCmd = QString("%1 -l").arg( dfuUtil.fileName() );
+    m_dfuUtilProcess.start( dfuCmd );
 
-// 	// Disable the flash button while command is running
-// 	ui->flashButton->setDisabled( true );
-// 	ui->listDevicesButton->setDisabled( true );
+    // Disable the flash button while command is running
+    //ui->updateFirmwareButton->setDisabled( true );
+    //ui->detectHardwareButton->setDisabled( true );
 }
 
 void MainWindow::dfuCommandStatus()
 {
-	// // Append text to the viewer
-	// ui->dfuResultsTextEdit->append( dfuUtilProcess.readAllStandardOutput() );
+    // Append text to the viewer
+    ui->textConsole->appendPlainText( m_dfuUtilProcess.readAllStandardOutput() );
 
-	// // Scroll to bottom
-	// ui->dfuResultsTextEdit->verticalScrollBar()->setValue( ui->dfuResultsTextEdit->verticalScrollBar()->maximum() );
+    // Scroll to bottom
+    ui->textConsole->verticalScrollBar()->setValue( ui->textConsole->verticalScrollBar()->maximum() );
 }
 
 void MainWindow::dfuCommandComplete( int exitCode )
 {
-	// // Re-enable button after command completes
-	// ui->flashButton->setDisabled( false );
-	// ui->listDevicesButton->setDisabled( false );
-
-	// // Append return code
-	// QString output = tr("Return Code: %1").arg( exitCode );
-	// ui->dfuResultsTextEdit->append( output );
+    //ui->updateFirmwareButton->setDisabled( false );
+    //ui->detectHardwareButton->setDisabled( false );
+     // Append return code
+     QString output = tr("Return Code: %1").arg( exitCode );
+     ui->textConsole->appendPlainText( output );
 }

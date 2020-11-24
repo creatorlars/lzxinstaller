@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>690</width>
+    <height>231</height>
    </rect>
   </property>
   <property name="font">
@@ -20,18 +20,113 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Firmware Update Utility</string>
+   <string>LZX Firmware Update</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QComboBox" name="deviceMenu">
+   <widget class="QComboBox" name="firmwareMenu">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>241</width>
+      <width>200</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Chromagnon</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>TBC2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Memory Palace</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Diver</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Escher Sketch</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="firmwareMenuLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>231</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select Firmware</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="detectHardwareButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Detect Hardware</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="textConsole">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>450</width>
+      <height>211</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="updateFirmwareButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>150</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Update Firmware</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="deviceMenu">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>200</width>
       <height>22</height>
      </rect>
     </property>
@@ -70,7 +165,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>100</y>
       <width>231</width>
       <height>16</height>
      </rect>
@@ -79,152 +174,7 @@
      <string>Select Device</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="detectHardwareButton">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Detect Hardware</string>
-    </property>
-   </widget>
-   <widget class="QDialogButtonBox" name="buttonBox">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>230</y>
-      <width>156</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="standardButtons">
-     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-    </property>
-   </widget>
-   <widget class="QSlider" name="horizontalSlider">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>480</y>
-      <width>160</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>430</y>
-      <width>64</width>
-      <height>23</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>430</y>
-      <width>118</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>24</number>
-    </property>
-   </widget>
-   <widget class="QDial" name="dial">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>460</y>
-      <width>50</width>
-      <height>64</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>380</y>
-      <width>62</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>170</y>
-      <width>261</width>
-      <height>201</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionExit"/>
-   </widget>
-   <widget class="QMenu" name="menuAbout">
-    <property name="title">
-     <string>About</string>
-    </property>
-    <addaction name="actionAbout_LZX"/>
-   </widget>
-   <widget class="QMenu" name="menuFirmware">
-    <property name="title">
-     <string>Firmware</string>
-    </property>
-    <addaction name="actionDevice_Firmware_Update"/>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuAbout"/>
-   <addaction name="menuFirmware"/>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionExit">
-   <property name="text">
-    <string>Exit</string>
-   </property>
-  </action>
-  <action name="actionAbout_LZX">
-   <property name="text">
-    <string>About LZX</string>
-   </property>
-  </action>
-  <action name="actionDevice_Firmware_Update">
-   <property name="text">
-    <string>Update Device Firmware</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

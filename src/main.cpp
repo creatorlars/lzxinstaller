@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "firmwareupdatedialog.h"
 
 #include <QApplication>
 

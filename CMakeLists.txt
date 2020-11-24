@@ -53,9 +53,7 @@ qt5_add_resources(RESOURCES ./resources/stills.qrc)
 
 if(ANDROID)
   add_library(${target} SHARED
-    src/firmwareupdatedialog.cpp
-    src/firmwareupdatedialog.ui
-    src/firmwareupdatedialog.h
+
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.h
@@ -64,9 +62,7 @@ if(ANDROID)
   )
 else()
   add_executable(${target}
-    src/firmwareupdatedialog.cpp
-    src/firmwareupdatedialog.ui
-    src/firmwareupdatedialog.h
+
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.h
