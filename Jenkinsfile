@@ -12,9 +12,10 @@ pipeline {
                 sh 'rm -rf build'
                 sh 'mkdir build && cd build && cmake .. && cmake --build . --config Release && cmake --build . --target bundle --config Release'
                 //sh 'mkdir installer'
-                //sh 'cp build/_CPack_Packages/** installer'
+                //sh 'cp build/_CPack_Packages/** installer's
                 //sh 'mv build/_CPack_Packages/Linux/IFW/LZX-0.1.1-win64/repository installer/Linux/repository'
                 //archiveArtifacts artifacts: 'installer/**'
+                archiveArtifacts artifacts: 'build/_CPack_Packages'
             }
         }
         stage('Build Windows') {
@@ -29,11 +30,11 @@ pipeline {
                 //bat 'pip install aqtinstall'
                 bat 'mkdir build && cd build && mkdir bin'
                 bat 'cd build && cmake .. && cmake --build . --config Release --target bundle'
-                bat 'mkdir installer'
+                //bat 'mkdir installer'
                 
-                bat 'move build\\_CPack_Packages\\** installer'
+                //bat 'move build\\_CPack_Packages\\** installer'
                 //bat 'move build\\_CPack_Packages\\win64\\IFW\\LZX-0.1.1-win64\\repository installer\\win64'
-                archiveArtifacts artifacts: 'installer/**'
+                archiveArtifacts artifacts: 'build/_CPack_Packages'
             }
         }
     }
