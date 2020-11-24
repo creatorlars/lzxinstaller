@@ -44,8 +44,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets Multimedia SerialPort LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia SerialPort LinguistTools REQUIRED)
 
 set(TS_FILES src/lzx_en_US.ts)
 qt5_add_resources(RESOURCES ./resources/firmware.qrc)
@@ -75,7 +75,7 @@ else()
   )
 endif()
 
-target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets nodes)
+target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::Multimedia nodes)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
