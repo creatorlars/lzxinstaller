@@ -25,14 +25,19 @@ public:
 private slots:
 
     void on_detectHardwareButton_clicked();
-
     void on_deviceMenu_currentIndexChanged(const QString &arg1);
-
     void on_actionDevice_Firmware_Update_triggered();
+	void browseFiles();
+	void dfuFlashBinary();
+	void dfuListDevices();
+	void dfuCommandStatus();
+	void dfuCommandComplete( int exitCode );
 
 private:
+	bool checkDFU( QFile *dfuUtil );
+
     Ui::MainWindow *ui;
     QString m_binaryPath;
-    //QProcess m_dfuUtilProcess;
+    QProcess m_dfuUtilProcess;
 };
 #endif // MAINWINDOW_H

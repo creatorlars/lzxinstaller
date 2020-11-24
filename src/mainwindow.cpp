@@ -7,10 +7,19 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 
+    // Connections    
+	connect( &m_dfuUtilProcess, SIGNAL( readyReadStandardOutput() ), this, SLOT( dfuCommandStatus() ) );
+	connect( &m_dfuUtilProcess, SIGNAL( finished( int, QProcess::ExitStatus ) ), this, SLOT( dfuCommandComplete( int ) ) );
+
+	// Only use the included dfu-util
+    
     m_binaryPath = QFileInfo(QCoreApplication::applicationFilePath()).dir().absolutePath();
+	m_dfuUtilProcess.setWorkingDirectory( m_binaryPath );
+
+	// Merge the output channels
+	m_dfuUtilProcess.setProcessChannelMode( QProcess::MergedChannels );
 }
 
 MainWindow::~MainWindow()
@@ -38,4 +47,119 @@ void MainWindow::on_actionDevice_Firmware_Update_triggered()
 {
     // static FirmwareUpdateDialog d;
     // d.show();
+}
+
+
+void MainWindow::browseFiles()
+{
+	// ui->fileBrowseLineEdit->setText(
+	// 	QFileDialog::getOpenFileName(
+	// 		this,
+	// 		tr("Select dfu binary"),
+	// 		QString(),
+	// 		tr("DFU Binary ( *.dfu.bin *.bin );;All Files ( * )")
+	// 	)
+	// );
+}
+
+// Make sure dfu-util can be found
+bool MainWindow::checkDFU( QFile *dfuUtil )
+{
+	// Make sure dfu-util exists
+	// if ( !dfuUtil->exists() )
+	// {
+	// 	// Error, dfu-util not installed locally
+	// 	QString output = tr("dfu-util cannot be found. Either build dfu-util and copy the binary to this directory or symlink it.\ne.g. ln -s /usr/bin/dfu-util %1/.").arg( binaryPath );
+	// 	ui->dfuResultsTextEdit->append( output );
+
+	// 	return false;
+	// }
+
+	return true;
+}
+
+void MainWindow::dfuFlashBinary()
+{
+// 	// Check if file exists
+// 	QFile flashFile( ui->fileBrowseLineEdit->text() );
+// 	if ( !flashFile.exists() )
+// 	{
+// 		// Error if no file selected
+// 		if ( flashFile.fileName() == QString() )
+// 		{
+// 			QString output = tr("No file selected...");
+// 			ui->dfuResultsTextEdit->append( output );
+// 		}
+// 		// Error if it doesn't exist
+// 		else
+// 		{
+// 			QString output = tr("'%1' does not exist...").arg( flashFile.fileName() );
+// 			ui->dfuResultsTextEdit->append( output );
+// 		}
+
+// 		return;
+// 	}
+
+// #ifdef WIN32
+//     QFile dfuUtil( binaryPath + "/" + "dfu-util.exe");
+// #else
+//     QFile dfuUtil( binaryPath + "/" + "dfu-util" );
+// #endif
+
+// 	// Only run dfu-util if it exists
+// 	if ( !checkDFU( &dfuUtil ) )
+// 	{
+// 		return;
+// 	}
+
+// 	// Run dfu-util command
+// 	QString dfuCmd = QString("%1 -D %2").arg( dfuUtil.fileName(), flashFile.fileName() );
+// 	dfuUtilProcess.start( dfuCmd );
+
+// 	// Disable the flash button while command is running
+// 	ui->flashButton->setDisabled( true );
+// 	ui->listDevicesButton->setDisabled( true );
+}
+
+void MainWindow::dfuListDevices()
+{
+// #ifdef WIN32
+// 	QFile dfuUtil( binaryPath + "/" + "dfu-util.exe");
+// #else
+// 	QFile dfuUtil( binaryPath + "/" + "dfu-util" );
+// #endif
+
+// 	// Only run dfu-util if it exists
+// 	if ( !checkDFU( &dfuUtil ) )
+// 	{
+// 		return;
+// 	}
+
+// 	// Run dfu-util command
+// 	QString dfuCmd = QString("%1 -l").arg( dfuUtil.fileName() );
+// 	dfuUtilProcess.start( dfuCmd );
+
+// 	// Disable the flash button while command is running
+// 	ui->flashButton->setDisabled( true );
+// 	ui->listDevicesButton->setDisabled( true );
+}
+
+void MainWindow::dfuCommandStatus()
+{
+	// // Append text to the viewer
+	// ui->dfuResultsTextEdit->append( dfuUtilProcess.readAllStandardOutput() );
+
+	// // Scroll to bottom
+	// ui->dfuResultsTextEdit->verticalScrollBar()->setValue( ui->dfuResultsTextEdit->verticalScrollBar()->maximum() );
+}
+
+void MainWindow::dfuCommandComplete( int exitCode )
+{
+	// // Re-enable button after command completes
+	// ui->flashButton->setDisabled( false );
+	// ui->listDevicesButton->setDisabled( false );
+
+	// // Append return code
+	// QString output = tr("Return Code: %1").arg( exitCode );
+	// ui->dfuResultsTextEdit->append( output );
 }
