@@ -11,7 +11,7 @@ set(target ${PROJECT_NAME})
 if(WIN32)
   set(Qt5_DIR "C:/Qt/5.14.2/msvc2017_64/lib/cmake/Qt5" CACHE PATH "directory where Qt5Config.cmake exists.")
   set(QT_DIR ${Qt5_DIR})
-  #set(CPACK_IFW_ROOT C:/Qt/Tools/QtInstallerFramework/4.0/bin)
+  set(CPACK_IFW_ROOT C:/Qt/Tools/QtInstallerFramework/4.0)
   
 elseif(APPLE)
   set(Qt5_DIR "/opt/Qt/5.14.2/clang_64/lib/cmake/Qt5" CACHE PATH "directory where Qt5Config.cmake exists.")
