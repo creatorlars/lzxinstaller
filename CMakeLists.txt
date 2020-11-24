@@ -68,7 +68,6 @@ target_link_libraries(${target} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
-
 set_target_properties(${target} PROPERTIES AUTORCC_OPTIONS "--compress;9")
 
 if(UNIX AND NOT APPLE)
@@ -88,13 +87,13 @@ elseif(APPLE)
     set_target_properties(${target}
                           PROPERTIES
                           MACOSX_BUNDLE_BUNDLE_NAME "${PROJECT_NAME}"
-                          MACOSX_BUNDLE_INFO_STRING "${PROJECT_NAME} Copyright (c) 2020 LZX Industries"
+                          MACOSX_BUNDLE_INFO_STRING "${PROJECT_NAME} Copyright (c) 2020 LZX Industries LLC"
                           MACOSX_BUNDLE_ICON_FILE Icon.icns
                           MACOSX_BUNDLE_GUI_IDENTIFIER "${PROJECT_NAME}"
                           MACOSX_BUNDLE_LONG_VERSION_STRING "${PROJECT_VERSION}"
                           MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
                           MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
-                          MACOSX_BUNDLE_COPYRIGHT " Copyright (c) 2020 LZX Industries"
+                          MACOSX_BUNDLE_COPYRIGHT " Copyright (c) 2020 LZX Industries LLC"
                           )
 endif()
 
